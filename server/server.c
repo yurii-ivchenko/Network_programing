@@ -11,7 +11,7 @@ int main() {
     int c, recv_size;
     char buffer[1024];
 
-    double coeffs[] = {1, -2, 3}; // приклад: x^2 - 2x + 3
+    double coeffs[] = {1, -2, 3}; 
     Polynomial* poly = create_polynomial(2, coeffs);
 
     WSAStartup(MAKEWORD(2,2), &wsa);
@@ -31,13 +31,13 @@ int main() {
     while((recv_size = recv(new_socket, buffer, sizeof(buffer), 0)) > 0) {
         buffer[recv_size] = '\0';
 
-        if(buffer[0] == 'x') { // запит значення
+        if(buffer[0] == 'x') { 
             double x = atof(buffer+2);
             double result = evaluate_polynomial(poly, x);
             sprintf(buffer, "%lf", result);
-        } else if(buffer[0] == 'd') { // запит порядку
+        } else if(buffer[0] == 'd') { 
             sprintf(buffer, "%d", get_degree(poly));
-        } else if(buffer[0] == 'c') { // запит коефіцієнтів
+        } else if(buffer[0] == 'c') { 
             char tmp[256] = "";
             for(int i=0; i<=poly->degree; i++) {
                 char num[32];
@@ -55,3 +55,4 @@ int main() {
     WSACleanup();
     return 0;
 }
+

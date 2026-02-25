@@ -18,19 +18,16 @@ int main() {
 
     connect(s, (struct sockaddr*)&server, sizeof(server));
 
-    // приклад: запит значення при x=2
     strcpy(buffer, "x 2");
     send(s, buffer, strlen(buffer), 0);
     recv(s, buffer, sizeof(buffer), 0);
     printf("Result: %s\n", buffer);
 
-    // запит порядку
     strcpy(buffer, "d");
     send(s, buffer, strlen(buffer), 0);
     recv(s, buffer, sizeof(buffer), 0);
     printf("Degree: %s\n", buffer);
 
-    // запит коефіцієнтів
     strcpy(buffer, "c");
     send(s, buffer, strlen(buffer), 0);
     recv(s, buffer, sizeof(buffer), 0);
@@ -40,3 +37,4 @@ int main() {
     WSACleanup();
     return 0;
 }
+

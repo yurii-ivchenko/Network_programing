@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.16)
+project(ParallelTCPServer LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+set(SERVER_SOURCES
+    src/main.cpp
+    src/Server.cpp
+    src/ClientHandler.cpp
+    src/Polynom.cpp
+)
+
+set(CLIENT_SOURCES
+    src/client.cpp
+)
+
+# Сервер
+add_executable(ParallelTCPServer ${SERVER_SOURCES})
+target_link_libraries(ParallelTCPServer ws2_32)
+
+# Клієнт
+add_executable(ParallelTCPClient ${CLIENT_SOURCES})
+target_link_libraries(ParallelTCPClient ws2_32)
+
+message(STATUS "Configured targets: ParallelTCPServer, ParallelTCPClient")
